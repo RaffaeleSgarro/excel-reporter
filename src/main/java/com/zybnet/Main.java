@@ -61,7 +61,7 @@ public class Main {
 			logger.info(filename + " [OK]");
 		}
 		
-		logger.info(String.format("Il totale è %.2f€%n", total));
+		logger.info(String.format("Il totale è %.2f€", total));
 		
 		// Generate the report
 		try {
