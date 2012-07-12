@@ -27,4 +27,4 @@ Maven issues
 * maven-shade-plugin throwed a SecurityException. Refer to [this blog post][1]
 
 
-[1] http://www.jswaffconsulting.com/2012/03/11/java-lang-securityexception-no-manifest-section-for-signature-file-entry/
+[1]: http://www.jswaffconsulting.com/2012/03/11/java-lang-securityexception-no-manifest-section-for-signature-file-entry/
