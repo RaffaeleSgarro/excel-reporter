@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d371e43d-8fc3-42fd-8d97-4ba0329690bc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="TOTALE" class="java.lang.String" isForPrompting="false"/>
+	<variable name="totale" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement uuid="ddb72bc3-77f8-4f77-8b15-cc44d32a5fa0" x="0" y="0" width="93" height="79"/>
+				<imageExpression><![CDATA["logo.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="d6ff2e9f-5b8a-4bfd-97fd-4e1258d09212" x="392" y="0" width="163" height="79"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Azienda XY
+via ABC, Trallallero
+Galassia Lontata Lontana
+PN 1020320100203]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement uuid="7d236bec-4833-4e0a-a60e-0731899ee57a" x="0" y="0" width="555" height="125"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Il totale dei fogli è " + $P{TOTALE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

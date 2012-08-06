@@ -3,11 +3,11 @@ package com.zybnet;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -65,8 +65,9 @@ public class Main {
 		
 		// Generate the report
 		try {
-			JasperReport report = JasperCompileManager.compileReport(
-					Main.class.getResourceAsStream("design.jrxml"));
+			ObjectInputStream in = new ObjectInputStream(
+							Main.class.getResourceAsStream("/design.jasper"));
+			JasperReport report = (JasperReport) in.readObject();
 			
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("TOTALE", new Double(total));
@@ -84,12 +85,14 @@ public class Main {
 			logger.error(e);
 		} catch (IOException e) {
 			logger.error(e);
+		} catch (ClassNotFoundException e) {
+			logger.error(e);
 		}
 	}
 
 	static  {
 		logger = Logger.getLogger(Main.class);
-		PropertyConfigurator.configure(Main.class.getResource("log4j.properties"));
+		PropertyConfigurator.configure(Main.class.getResource("/log4j.properties"));
 	}
 	
 	private static class Filter implements FilenameFilter {
