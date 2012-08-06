@@ -18,6 +18,7 @@ where in the last line
 To generate Eclipse project files, run:
 
     mvn eclipse:eclipse
+    mvn jasperreports:compile-reports
     
 Note that this is project is not compatible with M2E Eclipse plugin
 
@@ -35,3 +36,4 @@ BUGS
 * [FIXED] The final artifact (plus all dependencies) is 30MB!!!
 
 [1]: http://www.jswaffconsulting.com/2012/03/11/java-lang-securityexception-no-manifest-section-for-signature-file-entry/
+

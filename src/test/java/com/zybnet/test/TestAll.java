@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.NoSuchAlgorithmException;
 
 import junit.framework.TestCase;
 
@@ -14,11 +15,11 @@ import com.zybnet.Main;
 
 public class TestAll extends TestCase {
 
-	public void testMain() throws IOException, InvalidFormatException {
+	public void testMain() throws IOException, InvalidFormatException, NoSuchAlgorithmException {
 		
 		File tmp = copyFiles();
 		
-		File pdf = new File("target/test/excel-report.pdf");
+		File pdf = new File("tmp/test/excel-report.pdf");
 		
 		pdf.getParentFile().mkdirs();
 		
@@ -27,6 +28,7 @@ public class TestAll extends TestCase {
 				"A1",
 				pdf.getAbsolutePath()});
 		
+		// final cleanup
 		for (File file: tmp.listFiles()) {
 			file.delete();
 		}
@@ -39,7 +41,7 @@ public class TestAll extends TestCase {
 		File tmpDir = new File("tmp-test");
 		tmpDir.mkdirs();
 		
-		for (String name: new String[] {"foo", "bar", "baz"}) {
+		for (String name: new String[] {"foo", "bar", "baz", "intruder"}) {
 			name += ".xlsx";
 			OutputStream out = new FileOutputStream(new File(tmpDir, name));
 			InputStream in = getClass().getResourceAsStream("/" + name);

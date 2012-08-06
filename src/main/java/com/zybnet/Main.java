@@ -15,7 +15,6 @@ import net.sf.jasperreports.engine.JasperReport;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -29,7 +28,7 @@ public class Main {
 	// args[0] must be the directory
 	// args[1] cella
 	// args[2] output pdf filename
-	public static void main(String[] args) throws InvalidFormatException {
+	public static void main(String[] args) {
 		
 		double total = 0;
 		
@@ -50,18 +49,21 @@ public class Main {
 			Sheet sheet = workbook.getSheetAt(0);
 			CellReference cell = new CellReference(args[1]);
 			
-			total += sheet.getRow(cell.getRow()).getCell(cell.getCol()).getNumericCellValue();
-			
 			try {
-				file.close();
-			} catch (IOException e) {
-				logger.warn(e);
+				total += sheet.getRow(cell.getRow()).getCell(cell.getCol()).getNumericCellValue();
+			} catch (Exception e) {
+				logger.error("Non c'Ã¨ un numero nella cella " + args[1] + " del file " + filename);
+			} finally {
+				try {
+					file.close();
+				} catch (IOException e) {
+					logger.warn(e);
+				}
 			}
-			
 			logger.info(filename + " [OK]");
 		}
 		
-		logger.info(String.format("Il totale è %.2f€", total));
+		logger.info(String.format("Il totale Ã¨ %.2fâ‚¬", total));
 		
 		// Generate the report
 		try {
