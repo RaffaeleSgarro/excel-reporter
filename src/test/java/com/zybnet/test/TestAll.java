@@ -20,6 +20,8 @@ public class TestAll extends TestCase {
 		
 		File pdf = new File("target/test/excel-report.pdf");
 		
+		pdf.getParentFile().mkdirs();
+		
 		Main.main(new String[] {
 				tmp.getAbsolutePath(),
 				"A1",
